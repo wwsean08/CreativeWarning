@@ -25,7 +25,7 @@ public class SpoutCreativeWarningInventoryListener extends InventoryListener{
 	public void onInventoryOpen(InventoryOpenEvent event) {
 		Player player = event.getPlayer();
 		if(player.getGameMode().equals(GameMode.CREATIVE)){
-			if(!player.hasPermission("InvWarning.ignore")){
+			if(!player.hasPermission("CreativeWarning.ignore")){
 				inv.put(player, player.getInventory().getContents());
 			}
 		}
@@ -34,7 +34,7 @@ public class SpoutCreativeWarningInventoryListener extends InventoryListener{
 	@Override
 	public void onInventoryClose(InventoryCloseEvent event) {
 		Player player = event.getPlayer();
-		if(!player.hasPermission("InvWarning.ignore")){
+		if(!player.hasPermission("CreativeWarning.ignore")){
 			if(player.getGameMode().equals(GameMode.CREATIVE)){
 				List<Integer> bannedList = plugin.bannedItems;
 				ItemStack[] contents = player.getInventory().getContents();
@@ -62,6 +62,11 @@ public class SpoutCreativeWarningInventoryListener extends InventoryListener{
 					}
 				}
 				inv.remove(player);
+				if(plugin.blockMode){
+					for(Integer i : plugin.bannedItems){
+						player.getInventory().remove(i);
+					}
+				}
 			}
 		}
 	}
@@ -69,10 +74,10 @@ public class SpoutCreativeWarningInventoryListener extends InventoryListener{
 		Player[] online = Bukkit.getServer().getOnlinePlayers();
 		ItemStack IS = new ItemStack(i);
 		for(Player p : online){
-			if(p.hasPermission("InvWarning.admin")){
-				p.sendMessage(ChatColor.GRAY + player.getName() + " just added " + IS.getType().toString().toLowerCase().replace("_", " ") + " to their inventory");
+			if(p.hasPermission("CreativeWarning.admin")){
+				p.sendMessage(ChatColor.GRAY + player.getName() + " tried to add " + IS.getType().toString().toLowerCase().replace("_", " ") + " to their inventory");
 			}
 		}
-		log.warning(ChatColor.GRAY + player.getName() + " just added " + IS.getType().toString().toLowerCase().replace("_", " ") + " to their inventory");
+		log.warning(ChatColor.GRAY + player.getName() + " tried to add " + IS.getType().toString().toLowerCase().replace("_", " ") + " to their inventory");
 	}
 }

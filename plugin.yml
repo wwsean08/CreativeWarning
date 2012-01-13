@@ -1,6 +1,6 @@
 name: CreativeWarning
 main: com.wwsean08.CreativeWarning.CreativeWarning
-version: 1.0.0
+version: 1.0.1
 website: www.wwsean08.com
 author: wwsean08
 description: this is a plugin for server admins to monitor what items players in creative mode give themselves
@@ -8,7 +8,7 @@ depends: [Spout]
 permissions:
     CreativeWarning.ignore:
         description: ignores the user
-        default: OP
+        default: false
     CreativeWarning.admin:
         description: players with this node get notified about blacklisted items in other players inventories
         default: OP

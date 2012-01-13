@@ -1,2 +1,11 @@
-#you can easily add other items to this list by adding their block id
-bannedItems: [7, 8, 9, 10, 11, 46, 259, 326, 327]
+bannedItems:
+- 7
+- 8
+- 9
+- 10
+- 11
+- 46
+- 259
+- 326
+- 327
+blockMode: true
